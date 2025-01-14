@@ -5,6 +5,7 @@
 
 document.addEventListener("touchstart", startTouch, false);
 document.addEventListener("touchend", moveTouch, false);
+const fs = require("fs");
 
 // Swipe Up / Down / Left / Right
 var initialX = null;
