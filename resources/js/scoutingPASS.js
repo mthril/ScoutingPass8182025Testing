@@ -1061,7 +1061,6 @@ function swipePage(increment) {
       slides[slide].style.display = "table";
       document.getElementById('data').innerHTML = "";
       document.getElementById('copyButton').setAttribute('value','Copy Data');
-      document.getElementById("downloadButton").addEventListener("click", createAndDownloadFile);
     }
   }
 }
