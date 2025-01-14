@@ -910,7 +910,11 @@ function qr_regenerate() {
   updateQRHeader()
   return true
 }
+fs.writeFile('Output.txt', data, (err) => {
 
+  // In case of an error throw err.
+  if (err) throw err;
+})
 function qr_clear() {
   qr.clear()
 }
