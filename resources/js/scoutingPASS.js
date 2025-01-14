@@ -7,18 +7,17 @@ document.addEventListener("touchstart", startTouch, false);
 document.addEventListener("touchend", moveTouch, false);
 const fs = require("fs");
 
-function createAndDownloadFile() {
-	const fileContent = "Hello";
-	const fileName = "example.txt";
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
 
-	const blob = new Blob([fileContent], {type: "text/plain" });
-	const link = document.createElement("a");
-	link.href = URL.createObjectURL(blob);
-	link.download = fileName;
+  element.style.display = 'none';
+  document.body.appendChild(element);
 
-	document.body.appendChild(link);
-	link.click();
-	document.body.removeChild(link);
+  element.click();
+
+  document.body.removeChild(element);
 }
 
 	
@@ -1052,6 +1051,7 @@ function moveTouch(e) {
 };
 
 function swipePage(increment) {
+  download("hello.txt","This is the content of my file :)");
   if (qr_regenerate() == true) {
     slides = document.getElementById("main-panel-holder").children
     if (slide + increment < slides.length && slide + increment >= 0) {
