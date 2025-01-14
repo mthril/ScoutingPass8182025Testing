@@ -7,6 +7,21 @@ document.addEventListener("touchstart", startTouch, false);
 document.addEventListener("touchend", moveTouch, false);
 const fs = require("fs");
 
+function createAndDownloadFile() {
+	const fileContent = "Hello";
+	const fileName = "example.txt";
+
+	const blob = new Blob([fileContent], {type: "text/plain" });
+	const link = document.createElement("a";
+	link.href = URL.createObjectURL(blob);
+	link.download = fileName;
+
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+}
+
+	
 // Swipe Up / Down / Left / Right
 var initialX = null;
 var xThreshold = 0.3;
@@ -22,6 +37,8 @@ var options = {
   quietZone: 15,
   quietZoneColor: '#FFFFFF'
 };
+
+
 
 // Built from the JSON
 var requiredFields = []; //["e", "m", "l", "r", "s", "as"];
@@ -911,11 +928,6 @@ function qr_regenerate() {
   updateQRHeader()
   return true
 }
-fs.writeFile('Output.txt', data, (err) => {
-
-  // In case of an error throw err.
-  if (err) throw err;
-})
 function qr_clear() {
   qr.clear()
 }
@@ -1049,6 +1061,7 @@ function swipePage(increment) {
       slides[slide].style.display = "table";
       document.getElementById('data').innerHTML = "";
       document.getElementById('copyButton').setAttribute('value','Copy Data');
+      document.getElementById("downloadButton").addEventListener("click", createAndDownloadFile);
     }
   }
 }
