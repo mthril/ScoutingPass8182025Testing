@@ -12,7 +12,7 @@ function createAndDownloadFile() {
 	const fileName = "example.txt";
 
 	const blob = new Blob([fileContent], {type: "text/plain" });
-	const link = document.createElement("a";
+	const link = document.createElement("a");
 	link.href = URL.createObjectURL(blob);
 	link.download = fileName;
 
